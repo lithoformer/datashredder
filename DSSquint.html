@@ -1,0 +1,76 @@
+<!doctype html>
+
+
+<script>
+
+//var min = 0;
+//var max = 61;
+var min = 33;
+var max = 126;
+var val_ = 0;
+var val = 0;
+var randnum = 0;
+var randnum_ = 0;
+var randnum__ = 0;
+var accum0 = 0;
+var accum1 = 0;
+
+n = data.len;
+
+int dict = ["48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89", "90", "97", "98", "99", "100", "101", "102", "103", "104", "105", "106", "107", "108", "109", "110", "111", "112", "113", "114", "115", "116", "117", "118", "119", "120", "121", "122" ];
+
+run(data, n, val_, randnum, randnum_, randnum__, min, max, accum0, accum1, dict);
+
+function run(input, n, val_, randnum, randnum_, randnum__, min, max, accum0, accum1, dict)
+{
+
+  const array = input.split("");
+
+    for (len = 0; len < (n + 1); ++len)
+    {
+      if (len == n) {
+
+                array[len] = "\0";
+
+            }
+            else
+            {
+
+                val_ = array[len];
+
+                randnum = Math.random(accum0) % (max - min + 1) + min;
+
+                randnum_ += (int(val_) - randnum);
+                randnum__ += abs(int(val_) - randnum);
+
+                //array[len] = dict[randnum];
+                array[len] = randnum;
+
+            }
+    }
+
+  s = array.join();
+
+  accum0 += randnum_;
+  accum1 += randnum__;
+
+  run(s, n, val_, randnum, randnum_, randnum__, min, max, accum0, accum1, dict);
+
+}
+
+</script>
+
+
+
+<h2>DSSquint</h2>
+
+<div id="placeholder" class="form-wrapper form-inline">
+    <form data-bind="submit: run">
+      <input class="big input-xxlarge inline-block" id="placeholder" data-bind="onchange: data" type="text" placeholder="" data-hasqtip="1" aria-describedby="qtip-1" />
+      
+      <input class="btn btn-submit" id="send" type="submit" value="BUST!" style="margin: 0 auto;" />
+    </form>  
+  </div>
+
+
+</!doctype>
